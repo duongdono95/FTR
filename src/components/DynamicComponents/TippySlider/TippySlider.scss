@@ -1,0 +1,27 @@
+.TippySlider {
+  overflow: hidden;
+  .child-container {
+    background-color: var(--black05);
+    backdrop-filter: blur(20px);
+    border-radius: 5px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    cursor: pointer;
+    animation: slideIn 0.3s ease-in-out;
+    color: white;
+    box-shadow: inset 2px 2px 5px var(--black03),
+      inset -2px -2px 5px var(--white05);
+    &:active {
+      box-shadow: inset -2px -2px 5px var(--black03),
+        inset 2px 2px 5px var(--white05);
+    }
+  }
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

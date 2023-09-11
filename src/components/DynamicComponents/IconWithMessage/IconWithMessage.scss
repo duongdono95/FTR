@@ -1,0 +1,14 @@
+.IconWithMessage {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  .IconWithMessage-icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
