@@ -1,0 +1,43 @@
+.DropZone {
+  width: 100%;
+  border: 2px dashed var(--signature) !important;
+  margin: 30px auto;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--black005);
+  }
+  .content {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+  }
+  p {
+    text-align: center;
+  }
+  .output {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .icon-wrapper {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    &.success {
+      background-color: var(--success);
+      color: white;
+    }
+  }
+  .file-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}

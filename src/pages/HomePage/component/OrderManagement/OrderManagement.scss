@@ -19,6 +19,20 @@
     display: flex;
     align-items: center;
     padding: 1.5%;
+    &.buttons-container {
+      justify-content: space-between;
+      padding: 0 2% 2% 2%;
+      .group-buttons {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+    }
   }
   .item-title {
     width: 120px;
@@ -26,11 +40,11 @@
     font-weight: 600;
     opacity: 0.8;
   }
-  .Buy {
+  .buy {
     background-color: rgb(87, 106, 182);
     color: white;
   }
-  .Sell {
+  .sell {
     background-color: rgb(218, 50, 50);
     color: white;
   }

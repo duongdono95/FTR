@@ -1,0 +1,12 @@
+export const generalOptions = ["Option A", "Option B", "Option C"];
+export const customerOptions = ["Customer A", "Option B", "Option C"];
+export const sides = ["buy", "sell"];
+export const initialForm = {
+  sink: generalOptions[0],
+  source: generalOptions[0],
+  expiry: generalOptions[0],
+  side: sides[0],
+  price: 0,
+  volume: 0,
+  customer: generalOptions[0],
+};

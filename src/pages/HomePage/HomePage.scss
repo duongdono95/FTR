@@ -15,13 +15,14 @@
       flex-wrap: wrap;
     }
   }
-  .table {
+  .left {
     width: 50%;
-    height: 400px;
-    background-color: red;
+    .table {
+      height: 400px;
+      background-color: red;
+    }
   }
-  .order-management-wrapper {
+  .right {
     width: 50%;
-    height: 800px;
   }
 }
