@@ -9,13 +9,9 @@ export const OMFormSchema = z.object({
   side: sideSchema,
   price: z.number().positive({
     message: "Price must be greater than 0",
-  }).min(100, {
-    message: "Price must be greater than 100",
   }),
   volume: z.number().positive({
     message: "Volume must be greater than 0",
-  }).min(100, {
-    message: "Volume must be greater than 100",
   }),
   customer: z.string(),
 })

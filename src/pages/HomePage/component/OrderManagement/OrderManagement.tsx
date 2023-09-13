@@ -13,6 +13,7 @@ import {
 import { Trash } from "lucide-react";
 import { OMFormSchema, OMFormType } from "../../../../libs/GeneralTypes";
 import { ZodIssue } from "zod";
+import { toast } from "../../../../components/DynamicComponents/Toast/Toast";
 const OrderManagement = () => {
   const [form, setForm] = useState<OMFormType>(initialForm);
   const [error, setError] = useState<ZodIssue[]>();
@@ -21,6 +22,9 @@ const OrderManagement = () => {
     if (!formCheck.success) {
       const test = formCheck.error.issues;
       setError(test);
+      toast.error("Something goes wrong, please check the Form again");
+    } else {
+      toast.success("Post Successfully");
     }
   };
 

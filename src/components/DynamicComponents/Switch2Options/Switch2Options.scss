@@ -1,17 +1,16 @@
 .Switch2Options {
-  width: 80px;
   display: flex;
   align-items: center;
   overflow: hidden;
   border-radius: 5px;
   .Switch2Options-option {
     padding: 5px;
-    width: 25px;
     transition: all 0.5s ease-in-out;
     text-align: center;
     opacity: 0.5;
     font-size: 12px;
     font-weight: 600;
+    cursor: pointer;
     &.isActive {
       width: 55px;
       text-align: center;

@@ -8,16 +8,22 @@ interface Switch2OptionsProps<T extends { toString(): string }>
   className?: string;
   activeOption?: T;
   onOptionClick?: (selectedOption: T) => void;
+  width?: number;
 }
 
 const Switch2Options = <T extends { toString(): string }>(
   props: Switch2OptionsProps<T>
 ) => {
-  const { activeOption, className, options, onOptionClick, ...restProps } =
-    props;
-
+  const {
+    activeOption,
+    className,
+    options,
+    onOptionClick,
+    width,
+    ...restProps
+  } = props;
   const [isActive, setIsActive] = useState<T>(activeOption ?? options[0]);
-
+  const [comWidth, setComWidth] = useState(width ?? 80);
   useEffect(() => {
     if (activeOption !== undefined) {
       setIsActive(activeOption);
@@ -25,9 +31,16 @@ const Switch2Options = <T extends { toString(): string }>(
   }, [activeOption]);
 
   return (
-    <div className={classNames(className, "Switch2Options")} {...restProps}>
+    <div
+      style={{ width: comWidth }}
+      className={classNames(className, "Switch2Options")}
+      {...restProps}
+    >
       {options.map((option, index) => (
         <div
+          style={{
+            width: isActive === option ? (comWidth * 2) / 3 : comWidth / 3,
+          }}
           key={index}
           className={
             isActive === option

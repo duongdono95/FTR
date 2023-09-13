@@ -5,6 +5,9 @@
   border-radius: 10px;
   padding: 20px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   &:hover {
     background-color: var(--black005);
   }
@@ -34,6 +37,25 @@
     &.success {
       background-color: var(--success);
       color: white;
+    }
+  }
+  .file {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+    .trash-icon {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--black01);
+      border-radius: 50%;
+      &:hover {
+        background-color: var(--black02);
+        cursor: pointer;
+      }
     }
   }
   .file-name {
