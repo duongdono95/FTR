@@ -40,6 +40,16 @@
     font-weight: 600;
     opacity: 0.8;
   }
+  .error-messages {
+    min-height: 18px;
+    color: var(--error);
+    opacity: 0.7;
+    font-size: 12px;
+    padding: 0 1%;
+    p {
+      width: 100%;
+    }
+  }
   .buy {
     background-color: rgb(87, 106, 182);
     color: white;

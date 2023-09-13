@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./OrderManagement.scss";
 import DropDown from "../../../../components/DynamicComponents/DropDown/DropDown";
 import Switch2Options from "../../../../components/DynamicComponents/Switch2Options/Switch2Options";
@@ -10,9 +10,20 @@ import {
   sides,
   initialForm,
 } from "../../../../libs/constants";
+import { Trash } from "lucide-react";
+import { OMFormSchema, OMFormType } from "../../../../libs/GeneralTypes";
+import { ZodIssue } from "zod";
 const OrderManagement = () => {
-  const [form, setForm] = useState(initialForm);
-  console.log(form);
+  const [form, setForm] = useState<OMFormType>(initialForm);
+  const [error, setError] = useState<ZodIssue[]>();
+  const handleCheckRequest = () => {
+    const formCheck = OMFormSchema.safeParse(form);
+    if (!formCheck.success) {
+      const test = formCheck.error.issues;
+      setError(test);
+    }
+  };
+
   return (
     <div className="OrderManagement">
       <div className="container-title">Order Management</div>
@@ -53,7 +64,10 @@ const OrderManagement = () => {
             options={sides}
             defaultValue={form.side}
             onOptionClick={(selectedOption) => {
-              setForm((prev) => ({ ...prev, side: selectedOption }));
+              setForm((prev) => ({
+                ...prev,
+                side: selectedOption,
+              }));
             }}
           />
         </div>
@@ -62,34 +76,54 @@ const OrderManagement = () => {
           <InputComponent
             type="number"
             value={form.price}
-            onChange={(e) =>
-              setForm((prev) => ({ ...prev, price: Number(e.target.value) }))
-            }
+            onChange={(e) => {
+              setForm((prev) => ({ ...prev, price: Number(e.target.value) }));
+              setError(undefined);
+            }}
           />
+        </div>
+        <div className="error-messages">
+          {error &&
+            error.map((item) =>
+              item.path.includes("price") ? <p>{item.message}</p> : ""
+            )}
         </div>
         <div className="container-item">
           <p className="item-title">volume:</p>
           <InputComponent
             type="number"
             value={form.volume}
-            onChange={(e) =>
-              setForm((prev) => ({ ...prev, volume: Number(e.target.value) }))
-            }
+            onChange={(e) => {
+              setForm((prev) => ({ ...prev, volume: Number(e.target.value) }));
+              setError(undefined);
+            }}
           />
+        </div>
+        <div className="error-messages">
+          {error &&
+            error.map((item) =>
+              item.path.includes("volume") ? <p>{item.message}</p> : ""
+            )}
         </div>
         <div className="container-item">
           <p className="item-title">Customer:</p>
           <DropDown
             options={customerOptions}
             defaultValue={form.customer}
-            onChange={(e) =>
-              setForm((prev) => ({ ...prev, customer: e.target.value }))
-            }
+            onChange={(e) => {
+              setForm((prev) => ({ ...prev, customer: e.target.value }));
+            }}
           />
         </div>
         <div className="container-item buttons-container">
           <div className="group-buttons left">
             <Button onClick={() => setForm(initialForm)}>Reset</Button>
+            <Button>
+              <span>
+                <Trash size={16} />
+              </span>
+              Delete
+            </Button>
           </div>
           <div className="group-buttons right">
             <Button
@@ -99,7 +133,11 @@ const OrderManagement = () => {
             >
               Cancel
             </Button>
-            <Button sx={{ color: "white" }} variant="contained">
+            <Button
+              sx={{ color: "white" }}
+              variant="contained"
+              onClick={() => handleCheckRequest()}
+            >
               Post
             </Button>
           </div>

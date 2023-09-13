@@ -1,6 +1,8 @@
+import { sideSchema } from "./GeneralTypes";
+
 export const generalOptions = ["Option A", "Option B", "Option C"];
 export const customerOptions = ["Customer A", "Option B", "Option C"];
-export const sides = ["buy", "sell"];
+export const sides = sideSchema.options.map((option) => option._def.value);
 export const initialForm = {
   sink: generalOptions[0],
   source: generalOptions[0],
