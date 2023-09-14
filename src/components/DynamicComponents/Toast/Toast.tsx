@@ -1,63 +1,51 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { toast as toastify } from "react-toastify";
 import "./Toast.scss";
-import { AlertTriangle, Ban, CheckCircle2 } from "lucide-react";
-const ErrorToast = ({ message }: { message?: string }) => {
-  return (
-    <div className="AE-dynamic-toast">
-      <div className="left">
-        <Ban color="white" strokeWidth={2.5} size={30} />
-      </div>
-      <div className="right">
-        <p className="toast-title">Error</p>
-        <p className="toast-msg">{message}</p>
-      </div>
-    </div>
-  );
-};
+import { AlertTriangle, Ban, CheckCircle2, LucideIcon } from "lucide-react";
 
-const WarningToast = ({ message }: { message?: string }) => {
+const CustomToast = ({
+  message,
+  icon,
+  type,
+}: {
+  message?: string;
+  icon?: ReactElement<any, any>;
+  type: "success" | "error" | "warning" | "custom";
+}) => {
   return (
-    <div className="AE-dynamic-toast">
-      <div className="left">
-        <AlertTriangle color="white" strokeWidth={2.5} size={30} />
+    <div className="dynamic-toast">
+      <div className="dynamic-toast-icon">
+        {type === "custom" && icon ? icon : null}
+        {type === "success" && <CheckCircle2 color="white" strokeWidth={2.5} />}
+        {type === "error" && <Ban color="white" strokeWidth={2.5} />}
+        {type === "warning" && (
+          <AlertTriangle color="white" strokeWidth={2.5} />
+        )}
       </div>
-      <div className="right">
-        <p className="toast-title">Warning</p>
-        <p className="toast-msg">{message}</p>
-      </div>
-    </div>
-  );
-};
-
-const SuccessToast = ({ message }: { message?: string }) => {
-  return (
-    <div className="AE-dynamic-toast">
-      <div className="left">
-        <CheckCircle2 color="white" strokeWidth={2.5} size={30} />
-      </div>
-      <div className="right">
-        <p className="toast-title">Success</p>
-        <p className="toast-msg">{message}</p>
-      </div>
+      <p className="toast-msg">{message}</p>
     </div>
   );
 };
 
 export const toast = {
-  error: (message: string) =>
-    toastify.error(ErrorToast({ message }), {
+  error: (message: any) =>
+    toastify.success(CustomToast({ message, type: "error" }), {
       icon: false,
-      className: "AE-dynamic-toast-error-bg",
+      className: "dynamic-toast-error-bg",
     }),
-  warning: (message: string) =>
-    toastify.warning(WarningToast({ message }), {
+  warning: (message: any) =>
+    toastify.success(CustomToast({ message, type: "warning" }), {
       icon: false,
-      className: "AE-dynamic-toast-warning-bg",
+      className: "dynamic-toast-warning-bg",
     }),
-  success: (message: string) =>
-    toastify.success(SuccessToast({ message }), {
+  success: (message: any) =>
+    toastify.success(CustomToast({ message, type: "success" }), {
       icon: false,
-      className: "AE-dynamic-toast-success-bg",
+      className: "dynamic-toast-success-bg",
+    }),
+  custom: (message: any, icon?: ReactElement<any, any>) =>
+    toastify.success(CustomToast({ message, icon, type: "custom" }), {
+      icon: false,
+      className: "dynamic-toast-custom-bg",
     }),
 };

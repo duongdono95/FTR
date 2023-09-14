@@ -14,6 +14,7 @@ import { Trash } from "lucide-react";
 import { OMFormSchema, OMFormType } from "../../../../libs/GeneralTypes";
 import { ZodIssue } from "zod";
 import { toast } from "../../../../components/DynamicComponents/Toast/Toast";
+import { MenuItem, TextField } from "@mui/material";
 const OrderManagement = () => {
   const [form, setForm] = useState<OMFormType>(initialForm);
   const [error, setError] = useState<ZodIssue[]>();
@@ -24,7 +25,7 @@ const OrderManagement = () => {
       setError(test);
       toast.error("Something goes wrong, please check the Form again");
     } else {
-      toast.success("Post Successfully");
+      toast.custom(<Trash />);
     }
   };
 
@@ -34,6 +35,13 @@ const OrderManagement = () => {
       <div className="container-content">
         <div className="container-item">
           <p className="item-title">Sink:</p>
+          {/* <TextField select defaultValue={generalOptions[0]}>
+            {generalOptions.map((item, index) => (
+              <MenuItem key={index} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </TextField> */}
           <DropDown
             options={generalOptions}
             defaultValue={form.sink}
